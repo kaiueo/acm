@@ -21,18 +21,18 @@ Date::~Date()
 
 Date::Date(const Date& other)
 {
-    year = other.year;
-    month = other.month;
-    day = other.day;
+    setYear(other.year);
+    setMonth(other.month);
+    setDay(other.day);
 }
 
 void Date::setYear(int y)
 {
-    (isYearValid(y))?year=y:year=1;
+    (isYearValid(y))?(year = y):(year = 1);
 }
 void Date::setMonth(int m)
 {
-    (isMonthValid(m))?(month = m):(m = 1);
+    (isMonthValid(m))?(month = m):(month = 1);
 }
 void Date::setDay(int d)
 {
