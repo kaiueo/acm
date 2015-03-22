@@ -13,18 +13,24 @@ void initList(SeqList &L){
     L.data = (DataType*) malloc(MAXSIZE * sizeof(DataType));
     L.length = 0;
 }
+
 void clearList(SeqList &L){
     L.length = 0;
 }
+
 int isEmpty(SeqList &L){
     return L.length == 0;
 }
+
 int isFull(SeqList &L){
     return L.length == MAXSIZE;
 }
+
 int length(SeqList &L){
     return L.length;
 }
+
+//return: The offset of e
 int search(SeqList &L, DataType e){
     for(int i = 0;i<L.length;i++){
         if(L.data[i] == e){
@@ -33,6 +39,8 @@ int search(SeqList &L, DataType e){
     }
     return -1;
 }
+
+//i: the ith element
 int insert(SeqList &L,int i, DataType e){
     if(L.length == MAXSIZE){
         return 0;
@@ -49,6 +57,8 @@ int insert(SeqList &L,int i, DataType e){
         return 1;
     }
 }
+
+//i: the ith element
 int remove(SeqList &L, int i, DataType &e){
     if(i<1||i>L.length){
         return 0;
@@ -62,6 +72,7 @@ int remove(SeqList &L, int i, DataType &e){
         return 1;
     }
 }
+
 void copy(SeqList &L1, SeqList &L2){
     for(int i = 0;i<L1.length;i++){
         L2.data[i] = L1.data[i];
@@ -111,8 +122,6 @@ int main(){
     printf("\n\n");
     printf("%d", isEmpty(L1));
     printf("\n\n%d", L2.length);
-
-
 
     return 0;
 }
