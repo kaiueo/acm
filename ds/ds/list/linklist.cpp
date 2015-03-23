@@ -53,6 +53,10 @@ int search(LinkList &first, DataType e){
 }
 
 //i: ith
+//p = first
+//j = 0
+//p&&j<i-1
+//!p||j>i-1
 int insert(LinkList &first, int i, DataType e){
     LinkNode* p = first;
     int j = 0;
@@ -71,14 +75,18 @@ int insert(LinkList &first, int i, DataType e){
 }
 
 //i: ith
+//p = first
+//j = 0
+//p->next&&j<i-1
+//!(p->next)||j<i-1
 int remove(LinkList &first, int i, DataType &e){
     LinkNode* p = first;
     int j = 0;
-    while(p&&j<i-1){
+    while(p->next&&j<i-1){
         p = p->next;
         j++;
     }
-    if(!p||j>i-1){
+    if(!(p->next)||j>i-1){
         return 0;
     }
     LinkNode* q = (LinkNode*)malloc(sizeof(LinkNode));
@@ -89,9 +97,13 @@ int remove(LinkList &first, int i, DataType &e){
 }
 
 //i: ith
+//p = first->next
+//j = 1
+//p&&j<i
+//!p||j>i
 int getElem(LinkList &first, int i, DataType &e){
-    LinkNode* p = first;
-    int j = 0;
+    LinkNode* p = first->next;
+    int j = 1;
     while(p&&j<i){
         p = p->next;
         j++;
