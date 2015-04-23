@@ -19,7 +19,7 @@ int QueueEmpty(CircQueue* &Q){
 }
 
 int QueueFull(CircQueue* &Q){
-    return (Q->rear + 1) == Q->front;
+    return (Q->rear + 1) % maxSize == Q->front;
 }
 
 int QueueSize(CircQueue* &Q){
