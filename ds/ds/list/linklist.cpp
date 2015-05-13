@@ -14,7 +14,7 @@ void initList(LinkList &first){
 }
 
 void clearList(LinkList &first){
-    LinkNode* p =first->next;
+    LinkNode* p = first->next;
     LinkNode* q;
     while(p){
         q = p->next;

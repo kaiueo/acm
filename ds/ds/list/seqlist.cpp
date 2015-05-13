@@ -7,7 +7,7 @@ typedef int DataType;
 typedef struct {
     DataType *data;
     int length;
-} SeqList;
+}SeqList;
 
 void initList(SeqList &L){
     L.data = (DataType*) malloc(MAXSIZE * sizeof(DataType));
