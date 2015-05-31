@@ -227,6 +227,88 @@ void PostOrderS(BinTree BT){
     }
 }
 
+BinTree Parent(BinTree BT, BinTree p){
+    if(BT==p){
+        return NULL;
+    }
+    LinkStack S;
+    initStack(S);
+    push(S, BT);
+    BinTree t;
+    while(!StackEmpty(S)){
+        pop(S, t);
+        if(t->lchild==p||t->rchild==p){
+            return t;
+        }
+        if(t->rchild!=NULL){
+            push(S, t->rchild);
+        }
+        if(t->lchild!=NULL){
+            push(S, t->lchild);
+        }
+    }
+    return NULL;
+}
+
+void CreateBinTreeT(BinTree &BT){
+    LinkStack S;
+    initStack(S);
+    BinTree p, t;
+    int flag;
+    char ch;
+    BT = NULL;
+    cin>>ch;
+    while(ch!='#'){
+        switch(ch){
+            case '(':
+                push(S, p);
+                flag = 1;
+                break;
+            case ')':
+                pop(S, t);
+                break;
+            case ',':
+                flag = 2;
+                break;
+            default:
+                p = (BinTree)malloc(sizeof(BiTNode));
+                p ->data = ch;
+                p->lchild = NULL;
+                p->rchild = NULL;
+                if(BT==NULL){
+                    BT = p;
+                }
+                else{
+                    gettop(S, t);
+                    if(flag == 1){
+                        t->lchild = p;
+                    }
+                    else{
+                        t->rchild = p;
+                    }
+                }
+        }
+        cin>>ch;
+    }
+}
+
+BinTree CreateBinTreePI(TElemType* PRE, TElemType* IN, int n){
+    if(n==0){
+        return NULL;
+    }
+    TElemType* p = IN;
+    int k = 0;
+    while(*PRE!=*p){
+        p++;
+        k++;
+    }
+    BinTree t = (BinTree)malloc(sizeof(BiTNode));
+    t->data = *PRE;
+    t->lchild = CreateBinTreePI(PRE+1, IN, k);
+    t->rchild = CreateBinTreePI(PRE+k+1, IN+k+1, n-k-1);
+    return t;
+}
+
 int main(){
     BinTree T;
     createBinTree(T);
